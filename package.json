@@ -1,7 +1,7 @@
 {
-  "name": "kana_cli",
+  "name": "@usekana/cli",
   "version": "0.0.1",
-  "description": "",
+  "description": "CLI for managing Kana packages and features",
   "type": "module",
   "main": "bin/index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "cli"
   ],
   "bin": {
-    "kana": "./bin/index.js"
+    "kana": "bin/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,5 +22,13 @@
     "node-fetch": "^3.2.4",
     "yaml": "^2.1.0",
     "yargs": "^17.5.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usekana/cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/usekana/cli/issues"
+  },
+  "homepage": "https://github.com/usekana/cli#readme"
 }
