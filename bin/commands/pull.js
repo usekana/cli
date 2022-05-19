@@ -3,6 +3,9 @@ import YAML from "yaml";
 import { api } from "../api/index.js";
 
 export const pull = async () => {
+  const art = fs.readFileSync("./assets/art.txt", "utf8");
+  console.log(art);
+
   const data = await api.pull();
   console.log(data);
 
