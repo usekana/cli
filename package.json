@@ -1,6 +1,6 @@
 {
   "name": "@usekana/cli",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "CLI for managing Kana packages and features",
   "type": "module",
   "main": "bin/index.js",
@@ -13,6 +13,9 @@
   "bin": {
     "kana": "bin/index.js"
   },
+  "files": [
+    "assets/art.txt"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {

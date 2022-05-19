@@ -5,7 +5,10 @@ import { validate } from "./validate.js";
 import { api } from "../api/index.js";
 
 export const publish = async () => {
-  const art = fs.readFileSync("./assets/art.txt", "utf8");
+  const art = fs.readFileSync(
+    new URL("../../assets/art.txt", import.meta.url),
+    "utf8"
+  );
   console.log(art);
 
   const file = fs.readFileSync("./kana.yaml", "utf8");

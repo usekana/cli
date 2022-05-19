@@ -8,7 +8,6 @@ export const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Api-Version": file.version,
         Authorization: await getApiKey(),
       },
       body: JSON.stringify(file),
@@ -18,7 +17,6 @@ export const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Api-Version": file.version,
         Authorization: await getApiKey(),
       },
       body: JSON.stringify(parsedFile),
