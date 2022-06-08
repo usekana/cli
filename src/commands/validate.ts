@@ -1,7 +1,7 @@
 import chalk from "chalk";
-import { api } from "../api/index.js";
+import { Api } from "../api/index.js";
 
-export const validate = async (file) => {
+export const validate = async (file: any) => {
   // internal validation
   if (!file.features?.length || !file.packages?.length) {
     return {
@@ -9,7 +9,7 @@ export const validate = async (file) => {
     };
   }
 
-  const featureIds = file.features.map((f) => f.id);
+  const featureIds = file.features.map((f: any) => f.id);
 
   if (featureIds.length > new Set(featureIds).size) {
     return {
@@ -18,8 +18,8 @@ export const validate = async (file) => {
   }
 
   if (
-    file.packages.find((p) =>
-      p.features.find((f) => !featureIds.includes(f.id))
+    file.packages.find((p: any) =>
+      p.features.find((f: any) => !featureIds.includes(f.id))
     )
   ) {
     return {
@@ -27,11 +27,11 @@ export const validate = async (file) => {
     };
   }
 
-  const packageIds = file.packages.map((p) => p.id);
+  const packageIds = file.packages.map((p: any) => p.id);
 
   if (
-    file.packages.find((p) =>
-      p.addons?.find((pid) => !packageIds.includes(pid))
+    file.packages.find((p: any) =>
+      p.addons?.find((pid: any) => !packageIds.includes(pid))
     )
   ) {
     return {
@@ -39,9 +39,9 @@ export const validate = async (file) => {
     };
   }
 
-  const result = await api.validate();
+  const result: any = await Api.validate(file);
 
-  result.data.forEach((e) => {
+  result.data.forEach((e: any) => {
     if (e.includes("[SEVERE]")) {
       console.log(chalk.red(" - " + e));
     } else if (e.includes("[WARNING]")) {

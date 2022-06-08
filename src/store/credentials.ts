@@ -2,8 +2,16 @@ import inquirer from "inquirer";
 import Conf from "conf";
 
 export const getApiKey = async () => {
+  let apikey = process.env.KANA_KEY;
+
+  if (apikey) {
+    console.log(apikey);
+    return apikey;
+  }
+
   const config = new Conf();
-  let apikey = config.get("apikey");
+  apikey = config.get("apikey") as string;
+
   if (!apikey) {
     const answer = await inquirer.prompt([
       {

@@ -2,19 +2,16 @@ import fs from "fs";
 import YAML from "yaml";
 import inquirer from "inquirer";
 import { validate } from "./validate.js";
-import { api } from "../api/index.js";
+import { showArt } from "../utils.js/index.js";
+import { Api } from "../api/index.js";
 
 export const publish = async () => {
-  const art = fs.readFileSync(
-    new URL("../../assets/art.txt", import.meta.url),
-    "utf8"
-  );
-  console.log(art);
+  showArt();
 
   const file = fs.readFileSync("./kana.yaml", "utf8");
   const parsedFile = YAML.parse(file);
 
-  const validation = await validate(parsedFile);
+  const validation = (await validate(parsedFile)) as any;
 
   if (validation.error) {
     console.log("error: ", validation.error);
@@ -33,10 +30,10 @@ export const publish = async () => {
   ]);
 
   if (proceedWithPublication) {
-    const data = await api.publish();
+    const data: any = await Api.publish(parsedFile);
     console.log(data);
 
-    const yaml = YAML.stringify(json);
+    const yaml = YAML.stringify(data);
     console.log(yaml);
 
     fs.writeFileSync("./kana.yaml", yaml);
