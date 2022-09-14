@@ -1,24 +1,34 @@
-interface FeatureConfig {
+type FeatureConfig = {
   id: string;
   name: string;
   type: "CONSUMABLE" | "BINARY";
-}
+};
 
-interface PackageOnFeatureConfig {
+type PackageOnFeatureConfig = {
   id: string;
   limit: number | null;
-  overage_enabled: boolean;
-}
+  overage_enabled?: boolean;
+};
 
-interface PackageConfig {
+type PackageConfig = {
   id: string;
   name: string;
-  addon: boolean;
-  addons: string[];
   features: PackageOnFeatureConfig[];
-}
+};
 
-export interface KanaConfig {
+type AddonConfig = PackageConfig & {
+  base_packages: string[];
+};
+
+export type KanaConfig = {
+  app: string;
   features: FeatureConfig[];
-  packages: PackageConfig[];
-}
+  packages: {
+    draft: PackageConfig[];
+    published: PackageConfig[];
+  };
+  addons: {
+    draft: AddonConfig[];
+    published: AddonConfig[];
+  };
+};
