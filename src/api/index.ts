@@ -8,7 +8,7 @@ const getHeaders = async () => ({
   Authorization: await getApiKey(),
 });
 
-export namespace Api {
+namespace Api {
   export const validate = async (file: any) =>
     fetch(route.validate, {
       method: "POST",
@@ -34,3 +34,5 @@ export namespace Api {
     return parsed;
   };
 }
+
+export default Api;

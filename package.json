@@ -1,6 +1,6 @@
 {
   "name": "@usekana/cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "CLI for managing Kana packages and features",
   "type": "module",
   "main": "dist/index.js",
@@ -23,6 +23,7 @@
     "conf": "^10.1.2",
     "inquirer": "^8.2.4",
     "node-fetch": "^3.2.4",
+    "ora": "^6.1.2",
     "yaml": "^2.1.0",
     "yargs": "^17.5.1"
   },
