@@ -1,6 +1,6 @@
 {
   "name": "@usekana/cli",
-  "version": "0.0.6",
+  "version": "0.0.19",
   "description": "CLI for managing Kana packages and features",
   "type": "module",
   "main": "dist/index.js",
@@ -14,13 +14,15 @@
     "kana": "dist/index.js"
   },
   "files": [
-    "assets/art.txt"
+    "assets/art.txt",
+    "dist"
   ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.0.1",
     "conf": "^10.1.2",
+    "dotenv": "^16.0.2",
     "inquirer": "^8.2.4",
     "node-fetch": "^3.2.4",
     "ora": "^6.1.2",

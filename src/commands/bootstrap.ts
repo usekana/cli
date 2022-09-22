@@ -1,8 +1,7 @@
-import ora from "ora";
-import fs from "fs";
 import chalk from "chalk";
+import ora from "ora";
 import { KanaConfig } from "../model/index.js";
-import { cleanConfig, parseYaml, showArt } from "../utils.js/index.js";
+import { showArt, writeToKanaFile } from "../utils.js/index.js";
 
 export const bootstrap = async () => {
   showArt();
@@ -68,11 +67,7 @@ export const bootstrap = async () => {
 
   spinner.stop();
 
-  const cleanData = cleanConfig(data);
-
-  const yaml = parseYaml(cleanData);
-
-  fs.writeFileSync("./kana.example.yaml", yaml);
+  writeToKanaFile(data, false, true);
 
   console.log("\n");
   ora(

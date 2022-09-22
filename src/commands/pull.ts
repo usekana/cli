@@ -1,28 +1,25 @@
 import chalk from "chalk";
-import fs from "fs";
 import ora from "ora";
 import Api from "../api/index.js";
-import { cleanConfig, parseYaml, showArt } from "../utils.js/index.js";
+import { showArt, writeToKanaFile } from "../utils.js/index.js";
 
-export const pull = async () => {
+export const pull = async (args: { live?: boolean }) => {
+  const isLive = !!args.live;
+
   showArt();
 
-  const spinner = ora("Pulling...").start();
+  try {
+    const data = await Api.pull(isLive);
 
-  const data = await Api.pull();
+    writeToKanaFile(data, isLive);
 
-  spinner.stop();
-
-  const cleanData = cleanConfig(data);
-
-  const yaml = parseYaml(cleanData);
-
-  fs.writeFileSync("./kana.yaml", yaml);
-
-  console.log("\n");
-  ora(
-    chalk.bold(
-      "Local Kana config successfully synced! Check out your Kana config file at ./kana.yaml\n"
-    )
-  ).succeed();
+    console.log("\n");
+    ora(
+      chalk.bold(
+        "Local Kana config successfully synced! Check out your Kana config file at ./kana.yaml\n"
+      )
+    ).succeed();
+  } catch (error) {
+    ora(chalk.red("[ERROR]: " + error)).fail();
+  }
 };
