@@ -1,11 +1,13 @@
 import inquirer from "inquirer";
 import Conf from "conf";
+import ora from "ora";
+import { getEnvironmentApiKey } from "../constants/index.js";
 
-export const getApiKey = async () => {
-  let apikey = process.env.KANA_KEY;
+export const getApiKey = async (isLive: boolean) => {
+  let apikey = getEnvironmentApiKey(isLive);
 
   if (apikey) {
-    console.log(apikey);
+    ora("Loaded API key from environment variable.").info();
     return apikey;
   }
 
@@ -26,6 +28,8 @@ export const getApiKey = async () => {
     if (!apikey) {
       throw "apikey is required";
     }
+
+    ora("Loaded API key from cache.").info();
   }
 
   return apikey;

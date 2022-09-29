@@ -1,0 +1,80 @@
+# Updated: Tue Sep 20 2022 18:02:34 GMT+0100 (British Summer Time)
+
+# PROJECT: Test CF Soft
+
+# FEATURES
+features:
+  - id: consumable-2
+    name: Consumable 2
+    type: CONSUMABLE
+  - id: consumable-3
+    name: Consumable 3
+    type: CONSUMABLE
+  - id: premium-consumable
+    name: Premium Consumable
+    type: CONSUMABLE
+  - id: premium-binary
+    name: Premium Binary
+    type: BINARY
+  - id: consumable
+    name: Consumable
+    type: CONSUMABLE
+  - id: basic-consumable
+    name: Basic Consumable
+    type: CONSUMABLE
+  - id: basic-consumable2
+    name: Basic Consumable
+    type: CONSUMABLE
+  - id: binary
+    name: Binary
+    type: BINARY
+  - id: binary2
+    name: Binary
+    type: BINARY
+
+# PACKAGES
+packages:
+  draft:
+    - id: basic-plan-100
+      name: basic plan 100
+      features:
+        - id: binary2
+    - id: premium-plan-1000
+      name: Premium plan 1000
+      features:
+        - id: basic-consumable
+          limit: 100
+          overage_enabled: true
+        - id: consumable-3
+          limit: null
+        - id: premium-binary
+  published:
+    - id: premium-plan
+      name: Premium Plan
+      features:
+        - id: consumable
+          limit: null
+    - id: basic-plan
+      name: Basic Plan
+      features:
+        - id: consumable
+          limit: null
+    - id: premium-plan-22
+      name: Premium Plan 22
+      features:
+        - id: basic-consumable
+          limit: null
+    - id: premium-plan-23
+      name: Premium Plan 23
+      features:
+        - id: basic-consumable
+          limit: 1000
+    - id: basic-plan-26
+      name: Basic Plan 26
+      features:
+        - id: basic-consumable
+          limit: null
+    - id: basic-456
+      name: Basic 456
+      features:
+        - id: premium-binary

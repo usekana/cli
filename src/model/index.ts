@@ -6,11 +6,11 @@ type FeatureConfig = {
 
 type PackageOnFeatureConfig = {
   id: string;
-  limit: number | null;
+  limit?: number | null;
   overage_enabled?: boolean;
 };
 
-type PackageConfig = {
+export type PackageConfig = {
   id: string;
   name: string;
   features: PackageOnFeatureConfig[];

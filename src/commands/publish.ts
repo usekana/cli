@@ -1,19 +1,19 @@
-import fs from "fs";
-import YAML from "yaml";
-import inquirer from "inquirer";
-import { validate } from "./validate.js";
-import { cleanConfig, parseYaml, showArt } from "../utils.js/index.js";
-import Api from "../api/index.js";
-import ora from "ora";
 import chalk from "chalk";
+import inquirer from "inquirer";
+import ora from "ora";
+import Api from "../api/index.js";
+import { KanaConfig } from "../model/index.js";
+import { readKanaFile, showArt, writeToKanaFile } from "../utils.js/index.js";
+import { validate } from "./validate.js";
 
-export const publish = async (args: { force?: boolean }) => {
+export const publish = async (args: { force?: boolean; live?: boolean }) => {
+  const isLive = !!args.live;
+
   showArt();
 
-  const file = fs.readFileSync("./kana.yaml", "utf8");
-  const parsedFile = YAML.parse(file);
+  const file = readKanaFile(isLive);
 
-  const validation = (await validate(parsedFile)) as {
+  const validation = (await validate(file, isLive)) as {
     data: string[];
     error?: any;
   };
@@ -68,19 +68,15 @@ export const publish = async (args: { force?: boolean }) => {
   }
 
   if (canProceed) {
-    const spinner = ora("Publishing...").start();
+    try {
+      const data: KanaConfig = await Api.publish(file, isLive);
 
-    const data: any = await Api.publish(parsedFile);
+      writeToKanaFile(data, isLive);
 
-    spinner.stop();
-
-    const cleanData = cleanConfig(data);
-
-    const yaml = parseYaml(cleanData);
-
-    fs.writeFileSync("./kana.yaml", yaml);
-
-    console.log("\n");
-    ora(chalk.bold("Kana config successfully updated!\n")).succeed();
+      console.log("\n");
+      ora(chalk.bold("Kana config successfully updated!\n")).succeed();
+    } catch (error) {
+      ora(chalk.red("[ERROR]: " + error)).fail();
+    }
   }
 };
