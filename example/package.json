@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "validate": "cd .. && npx tsc && cd example && npm install && npx kana validate",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

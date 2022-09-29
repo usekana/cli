@@ -45,6 +45,7 @@ packages:
         - id: basic-consumable
           limit: 100
           overage_enabled: true
+          reset_period: "DAY"
         - id: consumable-3
           limit: null
         - id: premium-binary

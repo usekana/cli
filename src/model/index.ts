@@ -8,6 +8,7 @@ type PackageOnFeatureConfig = {
   id: string;
   limit?: number | null;
   overage_enabled?: boolean;
+  reset_period?: "YEAR" | "MONTH" | "DAY";
 };
 
 export type PackageConfig = {
@@ -22,6 +23,7 @@ type AddonConfig = PackageConfig & {
 
 export type KanaConfig = {
   app: string;
+  version: string;
   features: FeatureConfig[];
   packages: {
     draft: PackageConfig[];
