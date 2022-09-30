@@ -2,7 +2,7 @@
 
 Command-line interface for managing Kana packages and features.
 
-### Install
+### 💾 Install
 
 To make the `kana` command available in your terminal install the package globally with npm:
 
@@ -10,7 +10,7 @@ To make the `kana` command available in your terminal install the package global
 npm install -g @usekana/cli
 ```
 
-### Add API keys
+### 🔑 Add API keys
 
 Add the following private KANA API keys as variables to a `.env` file in your project:
 
