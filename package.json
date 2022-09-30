@@ -1,6 +1,6 @@
 {
   "name": "@usekana/cli",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "CLI for managing Kana packages and features",
   "type": "module",
   "main": "dist/index.js",
