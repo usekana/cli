@@ -11,6 +11,7 @@ export const bootstrap = async () => {
   await new Promise((res) => setTimeout(res, 500));
 
   const data: KanaConfig = {
+    version: "1.0.0",
     app: "My SaaS Business",
     features: [
       {

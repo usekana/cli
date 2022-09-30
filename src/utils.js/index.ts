@@ -15,7 +15,9 @@ export const parseYaml = (data: KanaConfig) => {
   const fDoc = new YAML.Document({ features: data.features });
   const pDoc = new YAML.Document({ packages: data.packages });
 
-  const header = `# Updated: ${new Date()}
+  const header = `version: 1.0.0
+  
+# Updated: ${new Date()}
 
 # PROJECT: ${data.app}
 `;
@@ -114,4 +116,10 @@ export const writeToKanaFile = (
   }
 
   fs.writeFileSync(getFileName(isLive, isExample), yaml);
+};
+
+export const toPackageArrayFromConfig = (config: KanaConfig) => {
+  config.packages.draft = config.packages?.draft ?? [];
+  config.packages.published = config.packages?.published ?? [];
+  return [...config.packages.draft, ...config.packages.published];
 };

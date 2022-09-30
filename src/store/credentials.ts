@@ -1,4 +1,3 @@
-import inquirer from "inquirer";
 import Conf from "conf";
 import ora from "ora";
 import { getEnvironmentApiKey } from "../constants/index.js";
@@ -6,32 +5,12 @@ import { getEnvironmentApiKey } from "../constants/index.js";
 export const getApiKey = async (isLive: boolean) => {
   let apikey = getEnvironmentApiKey(isLive);
 
-  if (apikey) {
-    ora("Loaded API key from environment variable.").info();
-    return apikey;
-  }
-
-  const config = new Conf();
-  apikey = config.get("apikey") as string;
-
   if (!apikey) {
-    const answer = await inquirer.prompt([
-      {
-        type: "input",
-        name: "apikey",
-        message: "Please provide your private API key",
-      },
-    ]);
-    apikey = answer.apikey;
-    config.set("apikey", apikey);
-
-    if (!apikey) {
-      throw "apikey is required";
-    }
-
-    ora("Loaded API key from cache.").info();
+    const envName = isLive ? "KANA_LIVE_KEY" : "KANA_DEV_KEY";
+    throw `apikey is required, please define ${envName} as an environment variable (.env)`;
   }
 
+  ora("Loaded API key from environment variable.").info();
   return apikey;
 };
 
