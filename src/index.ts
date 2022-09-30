@@ -12,7 +12,6 @@ import { publish } from "./commands/publish.js";
 import { pull } from "./commands/pull.js";
 import { validate } from "./commands/validate.js";
 import { getFileName } from "./constants/index.js";
-import { deleteApikey } from "./store/credentials.js";
 
 yargs(hideBin(process.argv))
   .usage("Usage: $0 <command> [options]")
@@ -20,10 +19,7 @@ yargs(hideBin(process.argv))
   .alias("force", ["f"])
   .describe("force", "Override errors when publishing kana.yaml")
   .boolean("live")
-  .describe(
-    "live",
-    "Pull or publish config for your live Kana app (default is test)"
-  )
+  .describe("live", "Pull or publish config for your live Kana app")
   .command("pull", "pull your current kana setup", () => {}, pull)
   .command("publish", "publish your local kana setup", () => {}, publish)
   .command(
@@ -38,12 +34,6 @@ yargs(hideBin(process.argv))
     }
   )
   .command("bootstrap", "generate an example config file", () => {}, bootstrap)
-  .command(
-    "clear",
-    "clear cache",
-    () => {},
-    () => deleteApikey()
-  )
   .command("secrets", "see current API key", () => {}, getSecrets)
   .demandCommand(1, 1, "choose a command: pull or publish")
   .strict()

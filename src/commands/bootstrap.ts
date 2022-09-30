@@ -16,20 +16,20 @@ export const bootstrap = async () => {
     features: [
       {
         id: "dashboard-access",
-        name: "dashboard-access",
+        name: "Dashboard access",
         type: "BINARY",
       },
       {
-        id: "API calls",
-        name: "api-calls",
-        type: "BINARY",
+        id: "api-calls",
+        name: "API calls",
+        type: "CONSUMABLE",
       },
     ],
     packages: {
       draft: [],
       published: [
         {
-          id: "basic",
+          id: "basic-plan",
           name: "Basic Plan",
           features: [
             {
@@ -44,7 +44,7 @@ export const bootstrap = async () => {
           ],
         },
         {
-          id: "premium",
+          id: "premium-plan",
           name: "Premium Plan",
           features: [
             {
